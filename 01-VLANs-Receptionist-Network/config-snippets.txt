@@ -1,0 +1,83 @@
+
+**Content for `config-snippets.txt`:**
+```txt
+===========================================
+VLAN RECEPTIONIST NETWORK - COMPLETE CONFIG
+===========================================
+Lab: VLAN Receptionist Network
+Date: July 19, 2026
+===========================================
+
+===========================================
+SWITCH CONFIGURATION
+===========================================
+
+! Create VLANs
+vlan 10
+ name RECEPTIONIST
+vlan 20
+ name FINANCE
+
+! Assign ports for VLAN 10 (Receptionist)
+interface fastEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+
+interface fastEthernet0/2
+ switchport mode access
+ switchport access vlan 10
+
+! Assign ports for VLAN 20 (Office)
+interface range fastEthernet0/3-8
+ switchport mode access
+ switchport access vlan 20
+
+! Configure trunk port to router
+interface gigabitEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20
+
+! Verify configurations
+show vlan brief
+show interfaces trunk
+show running-config
+
+===========================================
+ROUTER CONFIGURATION (ROUTER-ON-A-STICK)
+===========================================
+
+! Interface for VLAN 10 (Receptionist)
+interface gigabitEthernet0/0.10
+ encapsulation dot1q 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+! Interface for VLAN 20 (FINANCE)
+interface gigabitEthernet0/0.20
+ encapsulation dot1q 20
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+
+! Verify configurations
+show ip interface brief
+show ip route
+show running-config
+
+===========================================
+DEVICE IP ADDRESSES
+===========================================
+
+VLAN 10 (192.168.10.0/24)
+  - Laptop0: 192.168.10.11
+  - PC0:     192.168.10.12
+  - Gateway: 192.168.10.1
+
+VLAN 20 (192.168.20.0/24)
+  - Switch0: 192.168.20.13
+  - PC1:     192.168.20.14
+  - PC2:     192.168.20.15
+  - PC3:     192.168.20.16
+  - PC4:     192.168.20.17
+  - PC5:     192.168.20.18
+  - PC6:     192.168.20.19
+  - Gateway: 192.168.20.1
