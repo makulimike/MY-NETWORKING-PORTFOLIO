@@ -1,13 +1,11 @@
 # DHCP Server Configuration Lab
 
-## 📌 Objective
+## Objective
 Configure a DHCP server to automatically assign IP addresses to devices across multiple VLANs (10, 20, and 30).
 
----
 
 
-
-## 📋 Network Design
+##  Network Design
 
 ### VLAN Configuration
 
@@ -17,9 +15,8 @@ Configure a DHCP server to automatically assign IP addresses to devices across m
 | VLAN 20 | 192.168.20.0/24 | 192.168.20.1 | User VLAN 2 |
 | VLAN 30 | 192.168.30.0/24 | 192.168.30.1 | Server/Management VLAN |
 
----
 
-## 📋 Device Inventory
+##  Device Inventory
 
 ### Router0 (2911)
 
