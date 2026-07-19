@@ -3,7 +3,7 @@
 
 
 
-#  MY NETWORKING PORTFOLIO
+#  NETWORKING LABS
 
 Welcome to my networking portfolio! This repository contains my hands-on practice labs and projects using **Cisco Packet Tracer**.
 
