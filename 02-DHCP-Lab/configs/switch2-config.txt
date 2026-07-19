@@ -1,0 +1,63 @@
+===========================================
+SWITCH 2 CONFIGURATION - VLAN 20
+===========================================
+Device: Switch2 (2960-24TT)
+VLAN: 20
+Network: 192.168.20.0/24
+Date: July 19, 2026
+===========================================
+
+! Enable privileged mode
+enable
+configure terminal
+
+! Hostname
+hostname Switch2
+
+===========================================
+! VLAN CREATION
+===========================================
+
+vlan 20
+ name VLAN_20
+exit
+
+===========================================
+! VLAN 20 - ACCESS PORTS (PC8 to PC15)
+===========================================
+
+interface range fastEthernet0/1-8
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+description USER_PORTS_VLAN_20
+
+===========================================
+! UPLINK TO ROUTER (Gig0/1)
+===========================================
+
+interface gigabitEthernet0/1
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+description UPLINK_TO_ROUTER_VLAN_20
+
+===========================================
+! VERIFICATION COMMANDS
+===========================================
+
+show vlan brief
+show interfaces status
+show running-config | section vlan
+show running-config | include access vlan
+
+===========================================
+! SAVE CONFIGURATION
+===========================================
+
+copy running-config startup-config
+write memory
+
+===========================================
+END OF CONFIGURATION
+===========================================

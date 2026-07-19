@@ -1,0 +1,72 @@
+===========================================
+DHCP SERVER CONFIGURATION
+===========================================
+Device: Server0
+IP Address: 192.168.30.2
+VLAN: 30
+Date: July 19, 2026
+===========================================
+
+===========================================
+! DHCP POOL 1 - VLAN 10
+===========================================
+Pool Name: VLAN10_POOL
+Default Gateway: 192.168.10.1
+DNS Server: 8.8.8.8
+Domain Name: lab.local
+Start IP: 192.168.10.100
+End IP: 192.168.10.200
+Subnet Mask: 255.255.255.0
+Lease Time: 24 Hours
+
+===========================================
+! DHCP POOL 2 - VLAN 20
+===========================================
+Pool Name: VLAN20_POOL
+Default Gateway: 192.168.20.1
+DNS Server: 8.8.8.8
+Domain Name: lab.local
+Start IP: 192.168.20.100
+End IP: 192.168.20.200
+Subnet Mask: 255.255.255.0
+Lease Time: 24 Hours
+
+===========================================
+! DHCP POOL 3 - VLAN 30
+===========================================
+Pool Name: VLAN30_POOL
+Default Gateway: 192.168.30.1
+DNS Server: 8.8.8.8
+Domain Name: lab.local
+Start IP: 192.168.30.100
+End IP: 192.168.30.200
+Subnet Mask: 255.255.255.0
+Lease Time: 24 Hours
+
+===========================================
+! DHCP RESERVATIONS (Optional)
+===========================================
+Reserve IP: 192.168.10.50
+MAC Address: 00:1A:2B:3C:4D:5E
+Description: Manager's PC
+
+===========================================
+! VERIFICATION COMMANDS
+===========================================
+On DHCP Server:
+show ip dhcp binding
+show ip dhcp pool
+show ip dhcp statistics
+
+On PCs (Windows):
+ipconfig /all
+ipconfig /release
+ipconfig /renew
+
+On PCs (Linux):
+dhclient -v
+ifconfig
+
+===========================================
+END OF CONFIGURATION
+===========================================

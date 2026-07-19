@@ -1,0 +1,63 @@
+===========================================
+SWITCH 1 CONFIGURATION - VLAN 10
+===========================================
+Device: Switch1 (2960-24TT)
+VLAN: 10
+Network: 192.168.10.0/24
+Date: July 19, 2026
+===========================================
+
+! Enable privileged mode
+enable
+configure terminal
+
+! Hostname
+hostname Switch1
+
+===========================================
+! VLAN CREATION
+===========================================
+
+vlan 10
+ name VLAN_10
+exit
+
+===========================================
+! VLAN 10 - ACCESS PORTS (PC0 to PC7)
+===========================================
+
+interface range fastEthernet0/1-8
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+description USER_PORTS_VLAN_10
+
+===========================================
+! UPLINK TO ROUTER (Gig0/1)
+===========================================
+
+interface gigabitEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+description UPLINK_TO_ROUTER_VLAN_10
+
+===========================================
+! VERIFICATION COMMANDS
+===========================================
+
+show vlan brief
+show interfaces status
+show running-config | section vlan
+show running-config | include access vlan
+
+===========================================
+! SAVE CONFIGURATION
+===========================================
+
+copy running-config startup-config
+write memory
+
+===========================================
+END OF CONFIGURATION
+===========================================

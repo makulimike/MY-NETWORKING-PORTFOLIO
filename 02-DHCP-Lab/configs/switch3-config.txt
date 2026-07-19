@@ -1,0 +1,73 @@
+===========================================
+SWITCH 3 CONFIGURATION - VLAN 30
+===========================================
+Device: Switch3 (2960-24TT)
+VLAN: 30
+Network: 192.168.30.0/24
+Date: July 19, 2026
+===========================================
+
+! Enable privileged mode
+enable
+configure terminal
+
+! Hostname
+hostname Switch3
+
+===========================================
+! VLAN CREATION
+===========================================
+
+vlan 30
+ name VLAN_30
+exit
+
+===========================================
+! VLAN 30 - ACCESS PORTS (PC16 to PC19)
+===========================================
+
+interface range fastEthernet0/1-4
+ switchport mode access
+ switchport access vlan 30
+ no shutdown
+description USER_PORTS_VLAN_30
+
+===========================================
+! DHCP SERVER PORT (PC/Server0)
+===========================================
+
+interface fastEthernet0/5
+ switchport mode access
+ switchport access vlan 30
+ no shutdown
+description DHCP_SERVER_PORT
+
+===========================================
+! UPLINK TO ROUTER (Gig0/1)
+===========================================
+
+interface gigabitEthernet0/1
+ switchport mode access
+ switchport access vlan 30
+ no shutdown
+description UPLINK_TO_ROUTER_VLAN_30
+
+===========================================
+! VERIFICATION COMMANDS
+===========================================
+
+show vlan brief
+show interfaces status
+show running-config | section vlan
+show running-config | include access vlan
+
+===========================================
+! SAVE CONFIGURATION
+===========================================
+
+copy running-config startup-config
+write memory
+
+===========================================
+END OF CONFIGURATION
+===========================================

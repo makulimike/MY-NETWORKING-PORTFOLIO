@@ -1,0 +1,83 @@
+===========================================
+VERIFICATION COMMANDS - DHCP LAB
+===========================================
+Date: July 19, 2026
+===========================================
+
+===========================================
+! ROUTER VERIFICATION
+===========================================
+
+show ip interface brief
+show ip route
+show running-config | section interface
+show running-config | include helper-address
+show ip dhcp binding
+show ip dhcp pool
+show ip dhcp statistics
+
+===========================================
+! SWITCH VERIFICATION
+===========================================
+
+show vlan brief
+show interfaces status
+show interfaces trunk
+show mac address-table
+show running-config | section vlan
+
+===========================================
+! DHCP SERVER VERIFICATION
+===========================================
+
+show ip dhcp binding
+show ip dhcp pool
+show ip dhcp statistics
+show ip dhcp conflict
+
+===========================================
+! END DEVICE VERIFICATION (Windows)
+===========================================
+
+ipconfig /all
+ipconfig /release
+ipconfig /renew
+ping 192.168.30.2
+ping 192.168.10.1
+tracert 192.168.20.1
+
+===========================================
+! END DEVICE VERIFICATION (Linux)
+===========================================
+
+ifconfig
+dhclient -v
+ping 192.168.30.2
+ping 192.168.10.1
+traceroute 192.168.20.1
+
+===========================================
+! INTER-VLAN CONNECTIVITY TESTS
+===========================================
+
+Test 1: Same VLAN
+Source: PC0 (VLAN 10)
+Destination: PC1 (VLAN 10)
+Command: ping 192.168.10.101
+Expected: Successful
+
+Test 2: Inter-VLAN
+Source: PC0 (VLAN 10)
+Destination: PC8 (VLAN 20)
+Command: ping 192.168.20.101
+Expected: Successful
+
+Test 3: DHCP Server
+Source: PC0 (VLAN 10)
+Destination: Server0 (VLAN 30)
+Command: ping 192.168.30.2
+Expected: Successful
+
+===========================================
+END OF VERIFICATION COMMANDS
+===========================================

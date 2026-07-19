@@ -1,0 +1,64 @@
+===========================================
+ROUTER CONFIGURATION - DHCP LAB
+===========================================
+Device: Router0 (2911)
+Date: July 19, 2026
+===========================================
+
+! Enable privileged mode
+enable
+configure terminal
+
+! Hostname
+hostname Router0
+
+===========================================
+! INTERFACE CONFIGURATION
+===========================================
+
+! VLAN 10 - Gig0/0
+interface gigabitEthernet0/0
+ ip address 192.168.10.1 255.255.255.0
+ ip helper-address 192.168.30.2
+ no shutdown
+description CONNECTED_TO_VLAN_10
+
+! VLAN 20 - Gig0/1
+interface gigabitEthernet0/1
+ ip address 192.168.20.1 255.255.255.0
+ ip helper-address 192.168.30.2
+ no shutdown
+description CONNECTED_TO_VLAN_20
+
+! VLAN 30 - Gig0/2
+interface gigabitEthernet0/2
+ ip address 192.168.30.1 255.255.255.0
+ ip helper-address 192.168.30.2
+ no shutdown
+description CONNECTED_TO_VLAN_30
+
+===========================================
+! DEFAULT ROUTE
+===========================================
+
+ip route 0.0.0.0 0.0.0.0 192.168.30.2
+
+===========================================
+! VERIFICATION COMMANDS
+===========================================
+
+show ip interface brief
+show ip route
+show running-config | section interface
+show running-config | include helper-address
+
+===========================================
+! SAVE CONFIGURATION
+===========================================
+
+copy running-config startup-config
+write memory
+
+===========================================
+END OF CONFIGURATION
+===========================================
